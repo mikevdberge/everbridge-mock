@@ -1,0 +1,164 @@
+{
+  "uuid": "3080f0e3-0ddd-4435-83e2-0af654cac9b5",
+  "lastMigration": 28,
+  "name": "Everbridge",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "c203cc53-24bc-46b2-8db7-f9e4b019b6a7",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "ipaas/v1/ingestion/itsm/",
+      "responses": [
+        {
+          "uuid": "e3b25329-397c-42f5-bd04-2acb461749d8",
+          "body": "{\n  \"message\": \"Unauthorized\"\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "fa655613-31f0-4172-9454-a7dc708c3706",
+          "body": "{\n  \"message\": \"Incident {{body 'sourceSystemIncidentInfo'}} reported\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "X-Auth-Token",
+              "value": "V&sE3TYe$iPieY",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "a69da7d1-bd0e-4e7d-a8bf-106acc1fb881",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "ipaas/v1/ingestion/itsm/slow",
+      "responses": [
+        {
+          "uuid": "0b5f4fa0-167f-4cd1-981c-236458fef528",
+          "body": "{\n  \"message\": \"Unauthorized\"\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "87f0fb62-305b-4b25-bcb6-088152b8b325",
+          "body": "{\n  \"message\": \"Incident {{body 'sourceSystemIncidentInfo'}} reported\"\n}",
+          "latency": 31000,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "X-Auth-Token",
+              "value": "V&sE3TYe$iPieY",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "c203cc53-24bc-46b2-8db7-f9e4b019b6a7"
+    },
+    {
+      "type": "route",
+      "uuid": "a69da7d1-bd0e-4e7d-a8bf-106acc1fb881"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": []
+}
